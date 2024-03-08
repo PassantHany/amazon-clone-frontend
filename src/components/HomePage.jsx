@@ -1,15 +1,35 @@
+import { useEffect, useState } from "react";
 import { Carousel, HomePageCard, CarouselCategory, CarouselProduct } from "./";
 
 const HomePage = () => {
+  const [cat, setCat] = useState([]);
+
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products/categories")
+      .then((res) => res.json())
+      .then((json) => setCat(json));
+  }, []);
+
   return (
     <div className="bg-amazonclone-background">
-      <div className="min-w-[1000px] max-w-[1500px] m-auto">
+      <div className=" m-auto">
         <Carousel />
-        <div className="grid grid-cols-3 xl:grid-cols-4 -mt-80">
+        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 -mt-80">
+          {cat.map((item, index) => {
+            return (
+              <HomePageCard
+                key={index}
+                title={item}
+                img={"../images/home_grid_1.jpg"}
+                link={"See terms and conditions"}
+              />
+            );
+          })}
+
           <HomePageCard
-            title={"We have a surprise for you"}
-            img={"../images/home_grid_1.jpg"}
-            link={"See terms and conditions"}
+            title={"Watch The Rings of Power"}
+            img={"../images/home_grid_2.jpg"}
+            link={"Start streaming now"}
           />
           <HomePageCard
             title={"Watch The Rings of Power"}
@@ -26,26 +46,7 @@ const HomePage = () => {
             img={"../images/home_grid_4.jpg"}
             link={"Browse Kindle Unlimited"}
           />
-          <HomePageCard
-            title={"Shop Pet Supplies"}
-            img={"../images/home_grid_5.jpg"}
-            link={"See more"}
-          />
-          <HomePageCard
-            title={"Spring Sale"}
-            img={"../images/home_grid_6.jpg"}
-            link={"See the deals"}
-          />
-          <HomePageCard
-            title={"Echo Buds"}
-            img={"../images/home_grid_7.jpg"}
-            link={"See more"}
-          />
-          <HomePageCard
-            title={"Family Plan: 3 months free"}
-            img={"../images/home_grid_8.jpg"}
-            link={"Learn more"}
-          />
+
           <div className="m-3 pt-8">
             <img
               className="xl:hidden"

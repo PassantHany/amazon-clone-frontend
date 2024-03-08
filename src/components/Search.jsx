@@ -31,24 +31,25 @@ const Search = () => {
     });
   };
 
+  const [cat, setCat] = useState([]);
+
   useEffect(() => {
     getSuggestions();
+    fetch("https://fakestoreapi.com/products/categories")
+      .then((res) => res.json())
+      .then((json) => setCat(json));
   }, []);
 
   return (
-    <div className="w-[100%]">
-      <div className="flex items-center h-10 bg-amazonclone-yellow rounded">
+    <div className="w-[100%] ">
+      <div className="flex items-center h-8 bg-amazonclone-yellow rounded">
         <select
           onChange={(e) => setCategory(e.target.value)}
-          className="p-2 bg-gray-300 text-black border text-xs xl:text-sm"
+          className="p-1 bg-gray-300 text-black border text-xs xl:text-sm md:max-w-[100px] h-8"
         >
-          <option>All</option>
-          <option>Deals</option>
-          <option>Amazon</option>
-          <option>Fashion</option>
-          <option>Computers</option>
-          <option>Home</option>
-          <option>Mobiles</option>
+          {cat.map((item, index) => {
+            return <option key={index}>{item}</option>;
+          })}
         </select>
         <input
           className="flex grow items-center h-[100%] rounded-l text-black"
@@ -56,7 +57,7 @@ const Search = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button onClick={onHandleSubmit} className="w-[45px]">
+        <button onClick={onHandleSubmit} className="md:w-[45px] w-[40px]">
           <MagnifyingGlassIcon className="h-[27px] m-auto stroke-slate-900" />
         </button>
       </div>
