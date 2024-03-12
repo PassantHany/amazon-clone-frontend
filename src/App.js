@@ -6,6 +6,7 @@ import {
   SearchResults,
   ProductPage,
 } from "./components";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/checkout" element={<Checkout />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };
