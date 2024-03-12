@@ -43,5 +43,8 @@ git clone https://github.com/JonnyDavies/amazon-clone-frontend.git
 ## Start the app
 
 ```shell
+npm i
+npm install tailwindcss
+
 npm start
 ```
